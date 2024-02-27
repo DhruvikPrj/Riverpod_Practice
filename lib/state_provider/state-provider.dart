@@ -13,6 +13,7 @@ class StateProviderRiverpod extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     print("All Widget Builds");
     return Scaffold(
+      
       body: Consumer(
         builder: (context, ref, child) {
           print("only this widget builds");
