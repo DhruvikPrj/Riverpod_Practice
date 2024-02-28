@@ -18,19 +18,24 @@ class ThemeChange extends ConsumerWidget {
           title: const Text("Theme Change"),
         ),
         body: Center(
-            child: Switch(
-          thumbIcon: isLightTheme
-              ? MaterialStateProperty.all(const Icon(
-                  Icons.sunny,
-                  color: Color.fromARGB(255, 235, 154, 15),
-                ))
-              : MaterialStateProperty.all(const Icon(
-                  Icons.dark_mode,
-                  color: Color.fromARGB(255, 46, 5, 97),
-                )),
-          value: isLightTheme,
-          onChanged: (value) => ref.read(themeProvider.notifier).state = value,
-        )),
+          child: Switch(
+            thumbIcon: isLightTheme
+                ? MaterialStateProperty.all(const Icon(
+                    Icons.sunny,
+                    color: Color.fromARGB(255, 235, 154, 15),
+                  ))
+                : MaterialStateProperty.all(const Icon(
+                    Icons.dark_mode,
+                    color: Color.fromARGB(255, 46, 5, 97),
+                  )),
+            value: isLightTheme,
+            activeColor: isLightTheme ? Colors.white : Colors.black,
+            activeTrackColor: isLightTheme ? Colors.blue : Colors.black,
+            inactiveTrackColor: isLightTheme ? Colors.blue : Colors.black,
+            onChanged: (value) =>
+                ref.read(themeProvider.notifier).state = value,
+          ),
+        ),
       ),
     );
   }
