@@ -11,30 +11,59 @@ class StateProviderRiverpod extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print("All Widget Builds");
+    print("only this wisget builds");
+    final count = ref.watch(counterStateProvider);
+
+//if we want to listen value of provider and show something....
+    ref.listen(
+      counterStateProvider,
+      (previous, next) {
+        if (next == 10) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text("You have Reached $next")));
+        }
+      },
+    );
+
     return Scaffold(
-      
-      body: Consumer(
-        builder: (context, ref, child) {
-          print("only this widget builds");
-          int count = ref.watch(counterStateProvider);
-          return Center(
-            child: Text(
-              count.toString(),
-              style: const TextStyle(
-                  color: Colors.deepPurpleAccent,
-                  fontSize: 25,
-                  fontWeight: FontWeight.w700),
-            ),
-          );
-        },
+      appBar: AppBar(
+        title: const Text("StateProvider"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                //reset value logic
+                ref.invalidate(counterStateProvider);
+              },
+              icon: const Icon(Icons.refresh))
+        ],
       ),
+      body: //Consumer(
+          // builder: (context, ref, child) {
+          //   print("only this widget builds");
+          //   int count = ref.watch(counterStateProvider);
+          //   return
+          Center(
+        child: Text(
+          count.toString(),
+          style: const TextStyle(
+              color: Colors.deepPurpleAccent,
+              fontSize: 25,
+              fontWeight: FontWeight.w700),
+        ),
+      ),
+      // },
+      //),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          ref.read(counterStateProvider.notifier).state++;
+          //increment ways:
+          //ref.read(counterStateProvider.notifier).state++;
+          ref.read(counterStateProvider.notifier).update((state) => state + 1);
         },
         child: const Icon(Icons.add),
       ),
     );
   }
 }
+
+// ref.watch is used to observ provider state inside the build method. 
+// ref.read is used to read the provider value once.
