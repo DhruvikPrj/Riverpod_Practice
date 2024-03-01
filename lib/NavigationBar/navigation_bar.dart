@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_practice/NavigationBar/account.dart';
+import 'package:riverpod_practice/NavigationBar/gellery.dart';
+import 'package:riverpod_practice/NavigationBar/home.dart';
+import 'package:riverpod_practice/NavigationBar/navigation_notifier.dart';
 
-class ScreenNavigation extends StatelessWidget {
+class ScreenNavigation extends ConsumerWidget {
   const ScreenNavigation({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final index = ref.watch(navigationNotifierProvider);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Navigationbar"),
-        ),
+        body: [const Home(), const Gellery(), const Account()][index as int],
         bottomNavigationBar: NavigationBar(
           destinations: const [
             NavigationDestination(
@@ -29,7 +34,10 @@ class ScreenNavigation extends StatelessWidget {
               selectedIcon: Icon(Icons.account_circle),
             ),
           ],
-          selectedIndex: 0,
+          selectedIndex: index as int,
+          onDestinationSelected: (value) => ref
+              .read(navigationNotifierProvider.notifier)
+              .setSelectedIndex(value),
         ),
       ),
     );

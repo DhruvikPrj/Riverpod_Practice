@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'player_notifier.dart';
+part of 'navigation_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$playerNotifierHash() => r'426b93985af2266905d5ac9bd11b8558a0ac5a27';
+String _$navigationNotifierHash() =>
+    r'af2e3c8b7c0e4eaa8c772f4979093bf00f970667';
 
-/// See also [PlayerNotifier].
-@ProviderFor(PlayerNotifier)
-final playerNotifierProvider =
-    NotifierProvider<PlayerNotifier, Object?>.internal(
-  PlayerNotifier.new,
-  name: r'playerNotifierProvider',
+/// See also [NavigationNotifier].
+@ProviderFor(NavigationNotifier)
+final navigationNotifierProvider =
+    AutoDisposeNotifierProvider<NavigationNotifier, Object?>.internal(
+  NavigationNotifier.new,
+  name: r'navigationNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$playerNotifierHash,
+      : _$navigationNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$PlayerNotifier = Notifier<Object?>;
+typedef _$NavigationNotifier = AutoDisposeNotifier<Object?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -26,6 +26,7 @@ class PlayerNotifier extends _$PlayerNotifier {
     {'name': 'Liton Das', 'country': 'Bangladesh'},
   ];
 
+  @override
   build() {
     return allPlayers;
   }
